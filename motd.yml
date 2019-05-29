@@ -1,5 +1,6 @@
 ---
 - hosts: centos
+  gather_facts : False
   tasks: 
    - name:  get motd contents 
      shell: cat /etc/motd
@@ -7,6 +8,3 @@
    - debug: msg="stdout={{ motd_contents }}"
    #- debug: msg="MOTD is EMPTY"
    #  when: motd_contents.stdout == ""
-
-
-
