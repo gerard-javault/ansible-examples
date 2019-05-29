@@ -1,8 +1,8 @@
 ---
 - hosts: centos
-  tasks: 
+  tasks:
     - name : copy file to server 
-      copy: src=test.sh dest=/home/centos/test.sh mode=0755
+      copy: src=test.sh dest={{ ansible_user_dir }}/test.sh mode=0755
     - name: Run the script
       command: /home/centos/test.sh 
       register:  comm_out
@@ -11,3 +11,5 @@
        msg= "STDOUT - {{ comm_out.stdout }}"
     - debug:
        msg="STDERR - {{ comm_out.stderr }}"
+    - debug:
+       msg="STDERR - {{ comm_out.rc }}"
